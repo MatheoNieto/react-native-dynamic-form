@@ -1,6 +1,5 @@
 import * as Yup from "yup";
 import { CREATE_SCHEMA_FORMS, FieldType, FORM_TYPE_SCHEMA_PROPS } from "@types";
-import { validateStringArray } from "@utils/utils";
 
 export const createSchemasForms = (
   fields: FieldType[],
@@ -19,21 +18,23 @@ export const createSchemasForms = (
 
   fields.forEach((field, index) => {
     const isFieldChoose = field.type.includes("choice");
-    const valueCurrentField = field.initialValue;
     let tempSchema = isFieldChoose ? Yup.mixed() : Yup.string();
 
     if (field.initialValue) {
-      dataFields.initialValues[`${field.id}`];
+      dataFields.initialValues[field.name] = field.initialValue;
     }
 
     if (isFieldChoose && field.type === "single_choice") {
+      // @ts-ignore
       tempSchema.oneOf([...(field.options as const)], "Selecting");
     }
 
     if (field.required) {
       tempSchema.required("This field is mandatory");
-      dataFields.initialErrors[`${field.name}`] = "This field is mandatory";
+      dataFields.initialErrors[field.name] = "This field is mandatory";
     }
+
+    dataFields.labels[field.name] = field.name;
   });
 
   return {

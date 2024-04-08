@@ -1,14 +1,31 @@
 import React from "react";
-import { FieldCommonType } from "@types";
+import { FieldType, SchemaFormType } from "@types";
+import { createSchemasForms } from "@utils/createSchemaForms";
+import { Box, ScrollBox } from "@ui/components";
+import FormSchema from "@containers/FormSchema";
+import BaseSpinner from "@ui/components/BaseSpinner";
 
 type Props = {
-  schemaFields: FieldCommonType[];
-  onSubmit?: (values: unknown) => void;
-  onError?: () => void;
+  schemaFields: FieldType[];
 };
+const Forms: React.FC<Props> = ({ schemaFields }) => {
+  const [dataFields, setDataFields] = React.useState<SchemaFormType>();
 
-const Forms: React.FC<Props> = ({}) => {
-  return <></>;
+  React.useEffect(() => {
+    const schemaFields = createSchemasForms(schemaFields);
+    setDataFields(schemaFields);
+  }, [schemaFields]);
+
+  if (!dataFields) {
+    return <BaseSpinner />;
+  }
+
+  return (
+    <ScrollBox>
+      <Box>
+        <FormSchema dataFields={dataFields} />
+      </Box>
+    </ScrollBox>
+  );
 };
-
 export default Forms;

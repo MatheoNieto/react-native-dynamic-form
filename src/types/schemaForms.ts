@@ -34,6 +34,12 @@ type SingleChoiceType = FieldCommonType & {
   options: string[];
 };
 
+export type SchemaFormType = {
+  form: FORM_TYPE_SCHEMA_PROPS;
+  typesFields: string[];
+  propsFields: any;
+};
+
 export type FieldType = MultipleChoiceType | SingleChoiceType | FieldCommonType;
 
 export type FORM_TYPE_SCHEMA_PROPS = {
