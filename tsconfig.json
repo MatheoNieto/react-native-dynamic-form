@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowJs": true,
+    "lib": ["es2017", "esnext"],
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true ,
+    "strict": true,
+    "baseUrl": "./",
+    "noEmit": true,
+    "paths": {
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme/index"],
+      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/ui/*"],
+      "@theme/hooks": ["src/theme/hooks/index"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
