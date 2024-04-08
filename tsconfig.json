@@ -20,8 +20,12 @@
       "@theme/*": ["src/theme/*"],
       "@theme": ["src/theme/index"],
       "@components/*": ["src/components/*"],
+      "@containers/*": ["src/containers/*"],
       "@ui/*": ["src/ui/*"],
-      "@theme/hooks": ["src/theme/hooks/index"]
+      "@theme/hooks": ["src/theme/hooks/index"],
+      "@types": ["src/types/index"],
+      "@utils": ["src/utils/index"],
+      "@utils/*": ["src/utils/*"],
     }
   },
   "exclude": ["node_modules"]

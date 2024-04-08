@@ -1,11 +1,11 @@
-import React from 'react';
-import ThemeProvider from '@theme/ThemeProvider';
+import React from "react";
+import ThemeProvider from "@theme/ThemeProvider";
+import Forms from "@containers/Forms";
 
-
-export const Application = () => {
-	return (
-					<ThemeProvider>
-						<></>
-					</ThemeProvider>
-	);
+export const DynamicForm = () => {
+  return (
+    <ThemeProvider>
+      <Forms />
+    </ThemeProvider>
+  );
 };
