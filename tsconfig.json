@@ -16,6 +16,7 @@
     "baseUrl": "./",
     "noEmit": true,
     "paths": {
+      "@storage/*": ["src/storage/*"],
       "@theme/*": ["src/theme/*"],
       "@theme": ["src/theme/index"],
       "@components/*": ["src/components/*"],
