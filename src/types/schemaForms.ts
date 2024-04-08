@@ -12,8 +12,9 @@ export type TypeFields =
   | "date_time"
   | "select";
 
-export type FieldCommonType = {
+type FieldCommonType = {
   label: string;
+  name: string;
   type: TypeFields;
   onChange?: (newValue: string) => void;
   value: string;
@@ -21,7 +22,21 @@ export type FieldCommonType = {
   required?: boolean;
 };
 
-type FORM_TYPE_SCHEMA_PROPS = {
+type MultipleChoiceType = FieldCommonType & {
+  type: "multiple_choice";
+  options: string[];
+  value: string[];
+  initialValue: string[];
+};
+
+type SingleChoiceType = FieldCommonType & {
+  type: "single_choice";
+  options: string[];
+};
+
+export type FieldType = MultipleChoiceType | SingleChoiceType | FieldCommonType;
+
+export type FORM_TYPE_SCHEMA_PROPS = {
   initialErrors: any;
   initialValues: any;
   labels: any;
