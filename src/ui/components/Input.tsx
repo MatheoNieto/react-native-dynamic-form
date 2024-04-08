@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 import {
   Animated,
   Easing,
@@ -11,7 +11,7 @@ import {
   TextInputFocusEventData,
   TextInputProps,
   TextStyle,
-} from 'react-native';
+} from "react-native";
 import {
   backgroundColor,
   backgroundColorShorthand,
@@ -25,12 +25,12 @@ import {
   spacing,
   spacingShorthand,
   typography,
-} from '@shopify/restyle';
-import { useAppRestyle } from '@theme';
+} from "@shopify/restyle";
+import { useAppRestyle } from "@theme";
 
-import { Box, Text } from '@ui/components';
-import { useAsProp, useFontStyle } from '@ui/hooks';
-import { forwardRef, getKeys } from '@ui/utils';
+import { Box, Text } from "@ui/components";
+import { useAsProp, useCombinedRefs, useFontStyle } from "@ui/hooks";
+import { forwardRef, getKeys } from "@ui/utils";
 
 import type {
   BackgroundColorProps,
@@ -43,13 +43,12 @@ import type {
   SpacingShorthandProps,
   TypographyProps,
   VariantProps,
-} from '@shopify/restyle';
-import type { Theme } from '@theme';
-import { useCombinedRefs } from '@hooks/useCombinedRefs';
+} from "@shopify/restyle";
+import type { Theme } from "@theme";
 import { useIsDarkMode } from "@theme/hooks";
 
-type RestyleInputProps = VariantProps<Theme, 'inputVariants'> &
-  VariantProps<Theme, 'colors', 'placeholderTextColor'> &
+type RestyleInputProps = VariantProps<Theme, "inputVariants"> &
+  VariantProps<Theme, "colors", "placeholderTextColor"> &
   TypographyProps<Theme> &
   ColorProps<Theme> &
   BackgroundColorProps<Theme> &
@@ -66,12 +65,12 @@ type RestyleInputProps = VariantProps<Theme, 'inputVariants'> &
     name?: string;
     onChangeValue?: (() => Promise<any> | void) | Function | null;
     autoCompleteType?:
-      | 'password'
-      | 'email'
-      | 'street-address'
-      | 'name'
-      | 'cc-csc'
-      | 'tel';
+      | "password"
+      | "email"
+      | "street-address"
+      | "name"
+      | "cc-csc"
+      | "tel";
     label?: string | null;
     styleContent?: StyleProp<TextStyle>;
     isRequired?: boolean;
@@ -82,15 +81,15 @@ export type InputProps = RestyleInputProps & {
   _light?: RestyleInputProps;
 };
 const variant = createVariant({
-  themeKey: 'inputVariants',
+  themeKey: "inputVariants",
 });
 const inputPlaceholderTextColor = createRestyleFunction({
-  themeKey: 'colors',
-  property: 'placeholderTextColor',
+  themeKey: "colors",
+  property: "placeholderTextColor",
 });
 const inputSelectionColor = createRestyleFunction({
-  themeKey: 'colors',
-  property: 'selectionColor',
+  themeKey: "colors",
+  property: "selectionColor",
 });
 const restyleFunctions = composeRestyleFunctions([
   color,
@@ -115,8 +114,8 @@ const inputStyleProperties = [...typography, ...color].map(
 const Input = forwardRef<InputProps, typeof TextInput>(
   (
     {
-      isRequired=false,
-      suffix ,
+      isRequired = false,
+      suffix,
       value,
       label,
       isDisabled,
@@ -147,13 +146,13 @@ const Input = forwardRef<InputProps, typeof TextInput>(
     ).current;
     let _inputVariant = inputVariant;
     if (isFocused) {
-      _inputVariant = 'focused';
+      _inputVariant = "focused";
     }
     if (isDisabled) {
-      _inputVariant = 'disabled';
+      _inputVariant = "disabled";
     }
     if (isInvalid) {
-      _inputVariant = 'error';
+      _inputVariant = "error";
     }
     const refs = useCombinedRefs(internalRef, ref);
     const {
@@ -161,7 +160,7 @@ const Input = forwardRef<InputProps, typeof TextInput>(
       ...props
     } = useAppRestyle<
       InputProps,
-      Pick<TextInputProps, 'placeholderTextColor' | 'selectionColor'>
+      Pick<TextInputProps, "placeholderTextColor" | "selectionColor">
     >(restyleFunctions, {
       variant: _inputVariant,
       ...rest,
@@ -219,12 +218,12 @@ const Input = forwardRef<InputProps, typeof TextInput>(
       [],
     );
 
-
     return (
       <Pressable
-        style={[styles.inputContainer,  style, {...containerStyle }]}
+        style={[styles.inputContainer, style, { ...containerStyle }]}
         onPress={handleExternalFocus}
-        accessible={false}>
+        accessible={false}
+      >
         <Box flexDirection="row" alignItems="center">
           <Box flex={1}>
             <Text
@@ -240,7 +239,8 @@ const Input = forwardRef<InputProps, typeof TextInput>(
                   inputRange: [0, 1],
                   outputRange: [16, 14],
                 }),
-              }}>
+              }}
+            >
               {label ?? placeholder}
               {isRequired && <Text color="error500">*</Text>}
             </Text>
@@ -250,10 +250,10 @@ const Input = forwardRef<InputProps, typeof TextInput>(
               style={[
                 styles.text,
                 inputStyle,
-                fontStyle,
+                { fontStyle },
                 {
-                  paddingTop: (value || isFocused) ? 17 : 0,
-                  fontWeight: (value || isFocused) ? '700' : '500',
+                  paddingTop: value || isFocused ? 17 : 0,
+                  fontWeight: value || isFocused ? "700" : "500",
                   paddingHorizontal: 0,
                 },
                 styleContent,
@@ -265,32 +265,42 @@ const Input = forwardRef<InputProps, typeof TextInput>(
               textAlignVertical="center" // make align consistent across platforms
               {...props}
               value={value}
-              placeholder={''}
+              placeholder={""}
               onBlur={handleBlur}
               onFocus={handleFocus}
               onEndEditing={handleEndEditing}
             />
           </Box>
-          {suffix && <Box top={(value || isFocused)? 3 :8} right={5}>
-            <Text mt={label? "s": 'unset'} variant="bodyRegular" color="lightGray">{suffix}</Text>
-          </Box>}
-          {rightIcon && <Box top={(value || isFocused)? 7 :12} right={5}>
-            {rightIcon}
-          </Box>}
+          {suffix && (
+            <Box top={value || isFocused ? 3 : 8} right={5}>
+              <Text
+                mt={label ? "s" : "unset"}
+                variant="bodyRegular"
+                color="lightGray"
+              >
+                {suffix}
+              </Text>
+            </Box>
+          )}
+          {rightIcon && (
+            <Box top={value || isFocused ? 7 : 12} right={5}>
+              {rightIcon}
+            </Box>
+          )}
         </Box>
       </Pressable>
     );
   },
 );
 Input.defaultProps = {
-  placeholderTextColor: 'textPlaceholder',
+  placeholderTextColor: "textPlaceholder",
   caretHidden: false,
   maxFontSizeMultiplier: 1.3,
 };
 export default Input;
 const styles = StyleSheet.create({
   inputContainer: {
-    width: '100%',
+    width: "100%",
     height: 60,
   },
   text: {
