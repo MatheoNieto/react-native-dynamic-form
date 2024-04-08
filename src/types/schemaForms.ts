@@ -15,7 +15,6 @@ export type TypeFields =
 type FieldCommonType = {
   label: string;
   name: string;
-  type: TypeFields;
   onChange?: (newValue: string) => void;
   value: string;
   initialValue: string;
@@ -34,13 +33,22 @@ type SingleChoiceType = FieldCommonType & {
   options: string[];
 };
 
+type InputTextNumberType = FieldCommonType & {
+  type: "number" | "text";
+  placeholder?: string;
+};
+
 export type SchemaFormType = {
   form: FORM_TYPE_SCHEMA_PROPS;
   typesFields: string[];
   propsFields: any;
 };
 
-export type FieldType = MultipleChoiceType | SingleChoiceType | FieldCommonType;
+export type FieldType =
+  | MultipleChoiceType
+  | SingleChoiceType
+  | FieldCommonType
+  | InputTextNumberType;
 
 export type FORM_TYPE_SCHEMA_PROPS = {
   initialErrors: any;

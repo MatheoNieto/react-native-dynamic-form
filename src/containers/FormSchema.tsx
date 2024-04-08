@@ -6,7 +6,11 @@ import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import BaseSpinner from "@ui/components/BaseSpinner";
 
-const FormSchema: React.FC<CommonProps> = ({ dataFields, onSubmit }) => {
+const FormSchema: React.FC<CommonProps> = ({
+  dataFields,
+  onSubmit,
+  labelButtonSubmit,
+}) => {
   type SCHEMA_FORM = Yup.InferType<typeof dataFields.form.schema>;
   const formikRef = React.createRef<FormikProps<SCHEMA_FORM>>();
 
@@ -48,7 +52,10 @@ const FormSchema: React.FC<CommonProps> = ({ dataFields, onSubmit }) => {
       onSubmit={handleSubmit}
     >
       <Box>
-        <ManagerInput dataFields={dataFields} />
+        <ManagerInput
+          dataFields={dataFields}
+          labelButtonSubmit={labelButtonSubmit}
+        />
       </Box>
     </Formik>
   );

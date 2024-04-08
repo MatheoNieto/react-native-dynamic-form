@@ -1,2 +1,1 @@
-export *  from './Main'
-
+export { default as DynamicForm } from "./Main";
