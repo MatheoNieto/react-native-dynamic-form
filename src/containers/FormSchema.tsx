@@ -1,27 +1,54 @@
 import React from "react";
-import { FieldType, SchemaFormType } from "@types";
-import { ViewStyle } from "react-native";
+import { CommonProps } from "@types";
 import { Box } from "@ui/components";
 import ManagerInput from "@containers/ManagerInput";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
+import BaseSpinner from "@ui/components/BaseSpinner";
 
-type Props = {
-  dataFields: SchemaFormType;
-  onSubmit?: (values: unknown) => void;
-  onError?: () => void;
-  styleContainerForm?: ViewStyle;
-};
-
-const FormSchema: React.FC<Props> = ({ dataFields }) => {
+const FormSchema: React.FC<CommonProps> = ({ dataFields, onSubmit }) => {
   type SCHEMA_FORM = Yup.InferType<typeof dataFields.form.schema>;
-
   const formikRef = React.createRef<FormikProps<SCHEMA_FORM>>();
 
+  const [validationSchema, setValidationSchema] = React.useState<
+    SCHEMA_FORM | undefined
+  >(undefined);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    setValidationSchema(dataFields.form.schema);
+    const timeOutLoading = setTimeout(() => setIsLoading(false), 700);
+
+    return () => {
+      setValidationSchema(() => {
+        setIsLoading(true);
+        return undefined;
+      });
+      clearTimeout(timeOutLoading);
+    };
+  }, [dataFields.form.schema]);
+
+  const handleSubmit = React.useCallback((values: SCHEMA_FORM) => {
+    console.log("mapDataPetition::", JSON.stringify(values));
+    onSubmit(values);
+  }, []);
+
+  if (!validationSchema || isLoading) {
+    return <BaseSpinner />;
+  }
+
   return (
-    <Formik innerRef={formikRef}>
+    <Formik
+      innerRef={formikRef}
+      initialValues={dataFields.form.initialValues}
+      initialErrors={dataFields.form.initialErrors}
+      validationSchema={validationSchema}
+      validateOnChange={true}
+      onSubmit={handleSubmit}
+    >
       <Box>
-        <ManagerInput />
+        <ManagerInput dataFields={dataFields} />
       </Box>
     </Formik>
   );

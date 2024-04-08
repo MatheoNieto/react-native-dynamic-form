@@ -1,19 +1,19 @@
 import React from "react";
-import { FieldType, SchemaFormType } from "@types";
+import { CommonProps, FieldType, SchemaFormType } from "@types";
 import { createSchemasForms } from "@utils/createSchemaForms";
 import { Box, ScrollBox } from "@ui/components";
 import FormSchema from "@containers/FormSchema";
 import BaseSpinner from "@ui/components/BaseSpinner";
 
-type Props = {
+type Props = CommonProps & {
   schemaFields: FieldType[];
 };
-const Forms: React.FC<Props> = ({ schemaFields }) => {
+const Forms: React.FC<Props> = ({ schemaFields, ...rest }) => {
   const [dataFields, setDataFields] = React.useState<SchemaFormType>();
 
   React.useEffect(() => {
-    const schemaFields = createSchemasForms(schemaFields);
-    setDataFields(schemaFields);
+    const schemaResult = createSchemasForms(schemaFields);
+    setDataFields(schemaResult);
   }, [schemaFields]);
 
   if (!dataFields) {
@@ -23,7 +23,7 @@ const Forms: React.FC<Props> = ({ schemaFields }) => {
   return (
     <ScrollBox>
       <Box>
-        <FormSchema dataFields={dataFields} />
+        <FormSchema {...rest} dataFields={dataFields} />
       </Box>
     </ScrollBox>
   );
