@@ -11,7 +11,7 @@ import { Button } from "@ui/components";
 type Props = Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
   multiple?: boolean;
   label: string;
-  required: boolean;
+  required?: boolean;
   disabledInput?: boolean;
   optionWhoSign?: string[];
 };
@@ -48,6 +48,7 @@ const FieldsSignature: React.FC<Props> = ({
               )}
               <View style={styles.contentUser}>
                 <FieldInput
+                  variant="underLine"
                   placeholder="Enter name"
                   key={`field-input-signature-${index}`}
                   name={`${name}.${index}.name`}
@@ -75,6 +76,7 @@ const FieldsSignature: React.FC<Props> = ({
           ))}
           {multiple && (
             <Button
+              variant="link"
               mb="m"
               onPress={() =>
                 arrayHelpers.push({

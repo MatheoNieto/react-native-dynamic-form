@@ -10,6 +10,11 @@ const inputVariants = {
     borderWidth: 1,
     borderColor: "inputBorder",
   },
+  underLine: {
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    borderBottomWidth: 1,
+  },
   error: {
     borderColor: "errorAlert",
   },

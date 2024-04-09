@@ -1,6 +1,11 @@
 import * as Yup from "yup";
 import { CREATE_SCHEMA_FORMS, FieldType, FORM_TYPE_SCHEMA_PROPS } from "@types";
 
+type TempSchemaType = Yup.StringSchema | Yup.MixedSchema;
+type SchemaFieldTemporalType = {
+  [key: string]: TempSchemaType;
+};
+
 export const createSchemasForms = (
   fields: FieldType[],
 ): CREATE_SCHEMA_FORMS | undefined => {
@@ -10,14 +15,14 @@ export const createSchemasForms = (
     initialValues: {},
     initialErrors: {},
     labels: {},
-    schema: {},
+    schema: Yup.object().shape({}),
   };
 
-  const schemaFieldsTemporal: any = {};
+  const schemaFieldsTemporal: SchemaFieldTemporalType = {};
 
   fields.forEach((field, index) => {
     const isFieldChoose = field.type.includes("choice");
-    let tempSchema = isFieldChoose ? Yup.mixed() : Yup.string();
+    let tempSchema: TempSchemaType = isFieldChoose ? Yup.mixed() : Yup.string();
 
     if (field.initialValue) {
       dataFields.initialValues[field.name] = field.initialValue;
@@ -34,6 +39,7 @@ export const createSchemasForms = (
     }
 
     dataFields.labels[field.name] = field.name;
+    schemaFieldsTemporal[field.name] = tempSchema;
   });
 
   return {

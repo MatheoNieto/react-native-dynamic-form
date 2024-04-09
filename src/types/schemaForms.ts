@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export type TypeFields =
   | "title"
   | "text"
@@ -27,12 +29,20 @@ type TitleType = {
   name: string;
   labelIsHtml?: boolean;
   label: string;
+  initialValue?: string;
+  required?: boolean;
+};
+
+export type SignatureInitialValueType = {
+  whoSigned: string;
+  base64_image: string;
 };
 
 export type SignatureFieldType = FieldCommonType & {
   type: "signature";
   multiple?: boolean;
   disabledInput?: boolean;
+  initialValue?: SignatureInitialValueType[];
   optionWhoSign?: string[];
 };
 
@@ -56,22 +66,37 @@ type InputTextNumberType = FieldCommonType & {
 export type SchemaFormType = {
   form: FORM_TYPE_SCHEMA_PROPS;
   typesFields: string[];
-  propsFields: any;
+  propsFields: FieldType[];
 };
 
 export type FieldType =
   | MultipleChoiceType
   | SingleChoiceType
-  | FieldCommonType
   | InputTextNumberType
   | TitleType
   | SignatureFieldType;
 
+// @ts-ignore
+type YupSchema = yup.ObjectSchema<
+  yup.Shape<
+    object,
+    {
+      [key: string]: yup.Schema<any>;
+    }
+  >
+>;
+
 export type FORM_TYPE_SCHEMA_PROPS = {
-  initialErrors: any;
-  initialValues: any;
-  labels: any;
-  schema: any;
+  initialErrors: {
+    [key: string]: string;
+  };
+  initialValues: {
+    [key: string]: FieldType["initialValue"];
+  };
+  labels: {
+    [key: string]: string;
+  };
+  schema: YupSchema;
 };
 
 export type CREATE_SCHEMA_FORMS = {
