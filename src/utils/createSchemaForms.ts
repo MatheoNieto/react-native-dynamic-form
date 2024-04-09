@@ -14,7 +14,6 @@ export const createSchemasForms = (
   };
 
   const schemaFieldsTemporal: any = {};
-  const typesFields: string[] = [];
 
   fields.forEach((field, index) => {
     const isFieldChoose = field.type.includes("choice");
@@ -42,7 +41,6 @@ export const createSchemasForms = (
       ...dataFields,
       schema: Yup.object().shape(schemaFieldsTemporal),
     },
-    typesFields,
-    propsFields: {},
+    propsFields: fields,
   };
 };

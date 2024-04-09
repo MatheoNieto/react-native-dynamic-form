@@ -1,9 +1,10 @@
 import React from "react";
 import { SchemaFormType } from "@types";
-import { Button } from "@ui/components";
+import { Button, Text } from "@ui/components";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { FieldInput } from "@components/Forms";
+import RenderHtlm from "@components/RenderHtlm";
 
 type Props = {
   dataFields: SchemaFormType;
@@ -16,6 +17,18 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
+        if (itemField.type === "title") {
+          return (
+            <>
+              {itemField.labelIsHtml ? (
+                <RenderHtlm content={itemField.label} />
+              ) : (
+                <Text variant="headerBold">{itemField.label}</Text>
+              )}
+            </>
+          );
+        }
+
         if (itemField.type === "text") {
           return (
             <FieldInput

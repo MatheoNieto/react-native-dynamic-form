@@ -22,6 +22,13 @@ type FieldCommonType = {
   required?: boolean;
 };
 
+type TitleType = {
+  type: "title";
+  name: string;
+  labelIsHtml?: boolean;
+  label: string;
+};
+
 type MultipleChoiceType = FieldCommonType & {
   type: "multiple_choice";
   options: string[];
@@ -49,7 +56,8 @@ export type FieldType =
   | MultipleChoiceType
   | SingleChoiceType
   | FieldCommonType
-  | InputTextNumberType;
+  | InputTextNumberType
+  | TitleType;
 
 export type FORM_TYPE_SCHEMA_PROPS = {
   initialErrors: any;
@@ -60,6 +68,5 @@ export type FORM_TYPE_SCHEMA_PROPS = {
 
 export type CREATE_SCHEMA_FORMS = {
   form: FORM_TYPE_SCHEMA_PROPS;
-  typesFields: string[];
-  propsFields: unknown;
+  propsFields: FieldType[];
 };
