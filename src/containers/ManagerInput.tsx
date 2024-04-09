@@ -5,6 +5,7 @@ import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import { FieldInput } from "@components/Forms";
 import RenderHtlm from "@components/RenderHtlm";
+import FieldsSignature from "@components/Forms/FieldsSignature";
 
 type Props = {
   dataFields: SchemaFormType;
@@ -17,13 +18,33 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
+        if (itemField.type === "signature") {
+          return (
+            <FieldsSignature
+              key={`${index}field-signature-${itemField.name}`}
+              name={itemField.name}
+              label={itemField.label === "" ? "Signature" : itemField.label}
+              required={itemField.required}
+              multiple={itemField.multiple}
+            />
+          );
+        }
+
         if (itemField.type === "title") {
           return (
             <>
               {itemField.labelIsHtml ? (
-                <RenderHtlm content={itemField.label} />
+                <RenderHtlm
+                  key={`${index}title-html-${itemField.name}`}
+                  content={itemField.label}
+                />
               ) : (
-                <Text variant="headerBold">{itemField.label}</Text>
+                <Text
+                  key={`${index}title-${itemField.name}`}
+                  variant="headerBold"
+                >
+                  {itemField.label}
+                </Text>
               )}
             </>
           );

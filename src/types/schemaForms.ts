@@ -29,6 +29,13 @@ type TitleType = {
   label: string;
 };
 
+export type SignatureFieldType = FieldCommonType & {
+  type: "signature";
+  multiple?: boolean;
+  disabledInput?: boolean;
+  optionWhoSign?: string[];
+};
+
 type MultipleChoiceType = FieldCommonType & {
   type: "multiple_choice";
   options: string[];
@@ -57,7 +64,8 @@ export type FieldType =
   | SingleChoiceType
   | FieldCommonType
   | InputTextNumberType
-  | TitleType;
+  | TitleType
+  | SignatureFieldType;
 
 export type FORM_TYPE_SCHEMA_PROPS = {
   initialErrors: any;

@@ -16,6 +16,7 @@
     "baseUrl": "./",
     "noEmit": true,
     "paths": {
+      "@assets/*": ["src/assets/*"],
       "@theme/*": ["src/theme/*"],
       "@theme": ["src/theme/index"],
       "@components/*": ["src/components/*"],

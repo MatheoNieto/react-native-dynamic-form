@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-signature-canvas/index.d.ts b/node_modules/react-native-signature-canvas/index.d.ts
+index 6c60b21..438d7f0 100644
+--- a/node_modules/react-native-signature-canvas/index.d.ts
++++ b/node_modules/react-native-signature-canvas/index.d.ts
+@@ -8,7 +8,7 @@ declare module "react-native-signature-canvas" {
+ 
+   type ForwardRef<T, P> = React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>;
+ 
+-  type SignatureViewProps = {
++  export type SignatureViewProps = {
+     androidHardwareAccelerationDisabled?: boolean;
+     autoClear?: boolean;
+     backgroundColor?: string;
