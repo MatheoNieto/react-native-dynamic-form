@@ -1,4 +1,6 @@
-import * as yup from "yup";
+import * as Yup from "yup";
+// @ts-ignore
+import { ObjectShape } from "yup/lib/object";
 
 export type TypeFields =
   | "title"
@@ -76,14 +78,16 @@ export type FieldType =
   | TitleType
   | SignatureFieldType;
 
+type ObjectShapeValues =
+  ObjectShape extends Record<string, infer V> ? V : never;
+type Shape<T extends Record<any, any>> = Partial<
+  Record<keyof T, ObjectShapeValues>
+>;
 // @ts-ignore
-type YupSchema = yup.ObjectSchema<
-  yup.Shape<
-    object,
-    {
-      [key: string]: yup.Schema<any>;
-    }
-  >
+type YupSchema = Yup.ObjectSchema<
+  Shape<{
+    [key: string]: Yup.Schema<any>;
+  }>
 >;
 
 export type FORM_TYPE_SCHEMA_PROPS = {
