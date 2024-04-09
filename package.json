@@ -61,7 +61,6 @@
     "lodash": "^4.17.21",
     "react-native-animatable": "^1.4.0",
     "react-native-fs": "^2.20.0",
-    "react-native-mmkv-storage": "^0.9.1",
     "react-native-signature-canvas": "^4.7.2",
     "yup": "^1.4.0"
   },
