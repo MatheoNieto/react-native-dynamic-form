@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { CustomFonts, FONT_WEIGHT_MAPPING } from "@theme/constants";
+import { FONT_WEIGHT_MAPPING } from "@theme/constants";
 
 import type { FontWeight } from "@theme/types";
 import type { As, ComponentWithAs, PropsOf, RightJoinProps } from "@ui/types";
@@ -23,13 +23,5 @@ export const forwardRef = <Props extends object, Component extends As>(
     }
   >,
 ) => React.forwardRef(component);
-
-export const getCustomFontFamily = (
-  fontFamily?: string,
-  fontWeight: FontWeight = "normal",
-) =>
-  fontFamily && CustomFonts[fontFamily as CustomFonts]
-    ? `${fontFamily}${FONT_WEIGHT_MAPPING[fontWeight] ?? ""}`
-    : undefined;
 
 export const getKeys = <T>(object: T) => Object.keys(object) as (keyof T)[];
