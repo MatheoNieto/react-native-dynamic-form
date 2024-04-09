@@ -1,3 +1,6 @@
+
+# The package has error I'm working in that
+
 # react-native-dynamic-form
 
 This package help you creating dynamic forms
@@ -7,7 +10,8 @@ This package help you creating dynamic forms
 
 ```typescript
 type typeFields =
-  | "Text"
+  | 'title'
+  | "text"
   | "number"
   | "table"
   | "signature"

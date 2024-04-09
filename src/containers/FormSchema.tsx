@@ -1,12 +1,12 @@
 import React from "react";
-import { CommonProps } from "@types";
+import { CommonProps, SchemaFormType } from "@types";
 import { Box } from "@ui/components";
 import ManagerInput from "@containers/ManagerInput";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import BaseSpinner from "@ui/components/BaseSpinner";
 
-const FormSchema: React.FC<CommonProps> = ({
+const FormSchema: React.FC<CommonProps & { dataFields: SchemaFormType }> = ({
   dataFields,
   onSubmit,
   labelButtonSubmit,

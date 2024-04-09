@@ -45,7 +45,7 @@ import type {
   VariantProps,
 } from "@shopify/restyle";
 import type { Theme } from "@theme";
-import { useIsDarkMode } from "@theme/hooks";
+import { useDarkMode } from "@theme/hooks";
 
 type RestyleInputProps = VariantProps<Theme, "inputVariants"> &
   VariantProps<Theme, "colors", "placeholderTextColor"> &
@@ -137,7 +137,7 @@ const Input = forwardRef<InputProps, typeof TextInput>(
     ref,
   ) => {
     const BaseInputComponent = useAsProp(TextInput, as);
-    const isDarkMode = useIsDarkMode();
+    const isDarkMode = useDarkMode();
     const internalRef = useRef<TextInput>(null);
 
     const [isFocused, setIsFocused] = useState(false);

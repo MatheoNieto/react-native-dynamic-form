@@ -1,4 +1,5 @@
 export type TypeFields =
+  | "title"
   | "text"
   | "number"
   | "table"
@@ -16,8 +17,8 @@ type FieldCommonType = {
   label: string;
   name: string;
   onChange?: (newValue: string) => void;
-  value: string;
-  initialValue: string;
+  value?: string;
+  initialValue?: string;
   required?: boolean;
 };
 

@@ -1,4 +1,4 @@
-import {Theme} from '@theme';
+import { Theme } from "@theme";
 /**
  *
  * @param optionA
@@ -7,8 +7,8 @@ import {Theme} from '@theme';
  * @see https://docs.nativebase.io/dark-mode
  */
 export default function useColorModeValue<
-	T = Theme['colors'] | Theme['spacing'] | number | string,
+  T = Theme["colors"] | Theme["spacing"] | number | string,
 >(optionA: T, optionB: T) {
-	// const isDarkMode = useIsDarkMode();
-	return optionA;
+  // const isDarkMode = useDarkMode();
+  return optionA;
 }
