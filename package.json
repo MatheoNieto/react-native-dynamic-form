@@ -1,0 +1,72 @@
+{
+  "name": "react-native-dynamic-form",
+  "version": "1.0.0",
+  "description": "Create your form with field dynamics",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "expo",
+    "forms",
+    "files",
+    "input",
+    "upload files",
+    "multiple",
+    "single",
+    "customizable",
+    "placeholder",
+    "dynamic forms",
+    "component",
+    "react",
+    "reactnative",
+    "react-native",
+    "react native",
+    "android",
+    "ios",
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MatheoNieto/react-native-dynamic-form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MatheoNieto/react-native-dynamic-form/issues"
+  },
+  "publishConfig": {
+    "@MatheoNieto:registry": "https://npm.pkg.github.com"
+  },
+  "author": "Mateo Nieto <matheo.developer@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-native": ">=0.72.10"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.6",
+    "@types/lodash": "^4.17.0",
+    "@types/react": "^18.2.74",
+    "@types/react-native": "^0.73.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "@shopify/restyle": "^2.4.2",
+    "color": "^4.2.3",
+    "formik": "^2.4.5",
+    "lodash": "^4.17.21",
+    "react-native-animatable": "^1.4.0",
+    "react-native-fs": "^2.20.0",
+    "react-native-mmkv-storage": "^0.9.1",
+    "react-native-signature-canvas": "^4.7.2",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "clean": "npx rimraf **/dist",
+    "build": "tsup"
+  }
+}
