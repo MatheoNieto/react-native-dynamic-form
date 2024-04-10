@@ -78,6 +78,8 @@ type InputTextAnswerType = FieldCommonType & {
 
 type FileInputType = FieldCommonType & {
   type: "file";
+  multiple?: boolean;
+  typeFiles?: "images" | "pdf" | "all";
   initialValue: string[];
 };
 
