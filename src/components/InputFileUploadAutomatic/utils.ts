@@ -38,3 +38,18 @@ export const get_url_extension = (url: string) => {
 
   return url.split(/[#?]/)[0].split(".").pop()?.trim();
 };
+
+export const mapFilesFormData = (files: FileSelectedType[]) => {
+  const dataFormFiles = new FormData();
+  if (!files.length) return;
+
+  files.forEach((item) => {
+    dataFormFiles.append("files[]", {
+      uri: item.uri,
+      name: item.fileName ? item.fileName.toLowerCase() : "name file",
+      type: item.mimeType ? item.mimeType.toLowerCase() : "text/plain",
+    });
+  });
+
+  return dataFormFiles;
+};
