@@ -65,6 +65,15 @@ type InputTextNumberType = FieldCommonType & {
   placeholder?: string;
 };
 
+type InputTextAnswerType = FieldCommonType & {
+  type: "text_answer";
+  placeholder?: string;
+  requires?: {
+    item_name: string;
+    value: string;
+  };
+};
+
 export type SchemaFormType = {
   form: FORM_TYPE_SCHEMA_PROPS;
   typesFields: string[];
@@ -76,7 +85,8 @@ export type FieldType =
   | SingleChoiceType
   | InputTextNumberType
   | TitleType
-  | SignatureFieldType;
+  | SignatureFieldType
+  | InputTextAnswerType;
 
 type ObjectShapeValues =
   ObjectShape extends Record<string, infer V> ? V : never;

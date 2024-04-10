@@ -3,9 +3,12 @@ import { SchemaFormType } from "@types";
 import { Button, Text } from "@ui/components";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
-import { FieldInput } from "@components/Forms";
+import {
+  FieldInput,
+  FieldInputAnswer,
+  FieldsSignature,
+} from "@components/Forms";
 import RenderHtlm from "@components/RenderHtlm";
-import FieldsSignature from "@components/Forms/FieldsSignature";
 
 type Props = {
   dataFields: SchemaFormType;
@@ -26,6 +29,17 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
               label={itemField.label === "" ? "Signature" : itemField.label}
               required={itemField.required}
               multiple={itemField.multiple}
+            />
+          );
+        }
+
+        if (itemField.type === "text_answer") {
+          return (
+            <FieldInputAnswer
+              key={`${index}field-answer-${itemField.name}`}
+              label={itemField.label}
+              name={itemField.name}
+              placeholder={itemField.placeholder}
             />
           );
         }
@@ -54,7 +68,7 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
           return (
             <FieldInput
               key={`input-${itemField.name}-${index}`}
-              isRequired
+              isRequired={itemField.required}
               name={itemField.name}
               placeholder={itemField.placeholder}
               label={itemField.label}
