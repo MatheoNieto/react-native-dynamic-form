@@ -4,7 +4,7 @@ import {
   FileSelectedType,
   InputFileProps,
 } from "@components/InputFileUploadAutomatic/types";
-import { Box, Text } from "@ui/components";
+import { BaseTouchable, Text } from "@ui/components";
 import { palette } from "@theme";
 import ModalOptionsUploadFile from "@components/InputFileUploadAutomatic/ModalOptionsUploadFile";
 
@@ -35,13 +35,13 @@ const InputFile: React.FC<InputFileProps> = ({
 
   return (
     <>
-      <Box
+      <BaseTouchable
         p="m"
         borderWidth={1}
         borderColor="primary"
         alignItems="center"
         justifyContent="center"
-        borderRadius="m"
+        borderRadius="s"
         onPress={() => setShowModalMenu(!showModalMenu)}
       >
         <Ionicons
@@ -53,7 +53,7 @@ const InputFile: React.FC<InputFileProps> = ({
           {label ?? "Upload"}
           {isRequired && <Text style={{ color: "red" }}>*</Text>}
         </Text>
-      </Box>
+      </BaseTouchable>
       <ModalOptionsUploadFile
         setFiles={setFilesAssets}
         files={filesSelected}

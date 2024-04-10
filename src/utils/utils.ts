@@ -1,14 +1,3 @@
-export const getLabel = (label = "") => {
-  const titleIsHTML = label?.includes("</");
-
-  if (titleIsHTML && label) {
-    const arrayItems = label.split(/<.*?>/);
-    const filterEmpty = arrayItems.filter((item) => item !== "");
-    return filterEmpty.join("");
-  }
-  return label;
-};
-
 export const isNumber = (str: string) => {
   const num = parseFloat(str);
   return !isNaN(num);
