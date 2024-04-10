@@ -4,12 +4,11 @@ import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { useCombinedRefs } from "@ui/hooks";
 import { PropDate } from "@components/DateTimeInput/types";
-import { formatDate } from "@utils/format";
 import { BaseTouchable, Box, Text } from "@ui/components";
 import { TextInput, ViewStyle } from "react-native";
-import MaskInput, { Masks } from "react-native-mask-input";
 import { palette } from "@theme";
-import dayjs from "dayjs";
+import { MaskInput, Masks } from "@components/MaskInput";
+import moment from "moment";
 
 const InputDate: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   label,
@@ -39,9 +38,12 @@ const InputDate: React.FC<PropDate & { styleField?: ViewStyle }> = ({
       onChange?.(selectedDateText);
       return;
     }
-    const newDate = formatDate(selectedDateText, formatted);
-    onChange?.(selectedDateText);
-    setSelectedDate(dayjs(newDate).toDate);
+    const newDate = moment(selectedDateText, formatted, true);
+    const isValid = newDate.isValid();
+    if (isValid) {
+      onChange?.(selectedDateText);
+      setSelectedDate(newDate.toDate());
+    }
   }, [selectedDateText]);
 
   const showOrHideDatePicker = (show: boolean = true) => {
@@ -49,7 +51,7 @@ const InputDate: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   };
 
   const handleConfirm = (date: Date) => {
-    const dateText = formatDate(date, formatted);
+    const dateText = moment(date).format(formatted);
     setSelectedDateText(dateText);
     showOrHideDatePicker(false);
   };

@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  View,
   TextInput,
   NativeSyntheticEvent,
   TextInputFocusEventData,
 } from "react-native";
 import MaskInput, { MaskInputProps } from "react-native-mask-input";
 import { useCombinedRefs } from "@ui/hooks";
+import { Box } from "@ui/components";
 
 type Props = MaskInputProps & {
   onChangeText: (text: string) => void;
@@ -38,7 +38,7 @@ const MaskInputComponent = React.forwardRef<typeof TextInput, Props>(
     };
 
     return (
-      <View>
+      <Box>
         <MaskInput
           ref={refs}
           value={value || currentValue}
@@ -47,7 +47,7 @@ const MaskInputComponent = React.forwardRef<typeof TextInput, Props>(
           onFocus={handleFocus}
           {...restProps}
         />
-      </View>
+      </Box>
     );
   },
 );

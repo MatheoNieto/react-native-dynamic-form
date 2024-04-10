@@ -1,15 +1,15 @@
 import React from "react";
 import { FieldConfig, useField } from "formik";
 import ErrorMessage from "@components/Forms/ErrorMessage";
-import DateTimeInput from "@components/DateTimeInput/DateTimeInput";
 import { formatDate } from "@utils/format";
 import dayjs from "dayjs";
 import { PropDate } from "@components/DateTimeInput/types";
+import { DateTimeInput } from "@components/DateTimeInput";
 
 export type Props = PropDate &
   Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
     isRequired?: boolean;
-    typeFormat?: "date" | "time" | "date_time";
+    typeFormat: "date" | "time" | "date_time";
     defaultValue?: string;
   };
 const FieldInputDate: React.FC<Props> = ({

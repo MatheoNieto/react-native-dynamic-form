@@ -1,8 +1,8 @@
 import React from "react";
 import InputTime from "@components/DateTimeInput/InputTime";
 import InputDate from "@components/DateTimeInput/InputDate";
-import { View, Text, Platform } from "react-native";
 import { PropDate } from "@components/DateTimeInput/types";
+import { Box, Text } from "@ui/components";
 
 const DateTimeInput: React.FC<
   PropDate & { typeFormat: "date" | "time" | "date_time" }
@@ -59,15 +59,15 @@ const DateTimeInput: React.FC<
     );
   }
   return (
-    <View style={{ marginVertical: 10 }}>
+    <Box style={{ marginVertical: 10 }}>
       <Text style={labelStyles}>
         {label} {isRequired && <Text style={{ color: "red" }}>*</Text>}
       </Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <Box style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <InputDate defaultValue={date} onChange={setDate} {...rest} />
         <InputTime defaultValue={time} onChange={setTime} {...rest} />
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
 export default DateTimeInput;

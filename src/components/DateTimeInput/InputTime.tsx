@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { useCombinedRefs } from "@ui/hooks";
-import { formatDate } from "@utils/format";
 import { TextInput, ViewStyle } from "react-native";
 import { PropDate } from "@components/DateTimeInput/types";
 import { BaseTouchable, Box, Text } from "@ui/components";
-import MaskInput from "react-native-mask-input";
+import { MaskInput } from "@components/MaskInput";
+import moment from "moment";
 
 const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   label,
@@ -27,7 +27,7 @@ const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   );
   const [selectedTimeText, setSelectedTimeText] = React.useState<string>("");
   const formatTime = "HH:mm";
-  const currentDate = formatDate(new Date());
+  const currentDate = moment().format("DD-MM-YYYY");
 
   useEffect(() => {
     setSelectedTimeText(defaultValue);
@@ -48,7 +48,7 @@ const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
     setIsTimePickerVisible(show);
   };
   const handleConfirm = (time: Date) => {
-    const dateText = formatDate(time, formatTime);
+    const dateText = moment(time).format(formatTime);
     setSelectedTimeText(dateText);
     showOrHidePicker(false);
   };
