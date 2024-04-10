@@ -35,7 +35,7 @@ type TitleType = {
   required?: boolean;
 };
 
-export type SignatureInitialValueType = {
+export type SignatureValueType = {
   whoSigned: string;
   base64_image: string;
 };
@@ -44,7 +44,7 @@ export type SignatureFieldType = FieldCommonType & {
   type: "signature";
   multiple?: boolean;
   disabledInput?: boolean;
-  initialValue?: SignatureInitialValueType[];
+  initialValue?: SignatureValueType[];
   optionWhoSign?: string[];
 };
 
@@ -65,13 +65,15 @@ type InputTextNumberType = FieldCommonType & {
   placeholder?: string;
 };
 
+export type RequiresTextAnswersType = {
+  item_name: string;
+  value: string;
+};
+
 type InputTextAnswerType = FieldCommonType & {
   type: "text_answer";
   placeholder?: string;
-  requires?: {
-    item_name: string;
-    value: string;
-  };
+  requires?: RequiresTextAnswersType;
 };
 
 export type SchemaFormType = {

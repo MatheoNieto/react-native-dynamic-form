@@ -146,7 +146,7 @@ const Input = forwardRef<InputProps, typeof TextInput>(
     ).current;
     let _inputVariant = inputVariant;
     if (isFocused) {
-      _inputVariant = "focused";
+      _inputVariant = _inputVariant !== "textArea" ? "focused" : "focusedArea";
     }
     if (isDisabled) {
       _inputVariant = "disabled";

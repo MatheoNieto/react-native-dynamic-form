@@ -34,6 +34,11 @@ const inputVariants = {
   textArea: {
     height: 120,
   },
+  focusedArea: {
+    borderColor: "inputBorderFocused",
+    height: 120,
+    fontWeight: "700",
+  },
 };
 
 export default inputVariants;
