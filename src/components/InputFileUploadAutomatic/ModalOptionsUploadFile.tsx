@@ -1,6 +1,6 @@
 import React from "react";
 
-import { View, StyleSheet, Alert } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import {
@@ -8,7 +8,7 @@ import {
   MediaTypes,
 } from "@components/InputFileUploadAutomatic/types";
 import { mapperDataFiles } from "@components/InputFileUploadAutomatic/utils";
-import { Button } from "@ui/components";
+import { Box, Button } from "@ui/components";
 
 type Props = {
   files: FileSelectedType[];
@@ -117,7 +117,7 @@ const ModalOptionsUploadFile: React.FC<Props> = ({
   if (!openModal) return null;
 
   return (
-    <View style={styles.modalMenu}>
+    <Box style={styles.modalMenu}>
       {typeFiles !== "pdf" && (
         <>
           <Button variant="text" onPress={() => pickImage()}>
@@ -137,7 +137,7 @@ const ModalOptionsUploadFile: React.FC<Props> = ({
       >
         Choose Files
       </Button>
-    </View>
+    </Box>
   );
 };
 

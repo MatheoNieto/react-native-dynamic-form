@@ -29,8 +29,8 @@ const CheckboxComponent: React.FC<PropsCheckbox> = ({
   isRequired,
   title,
   onChange,
-  colorChecked = "#1F3552",
-  colorUnchecked = "#1F3552",
+  colorChecked = palette.primaryBlue,
+  colorUnchecked = palette.primaryBlue,
 }) => {
   const [optionSelected, setOptionSelected] = React.useState<string[]>([]);
 
@@ -85,7 +85,7 @@ const CheckboxComponent: React.FC<PropsCheckbox> = ({
     <Box>
       <Text>
         {title}
-        {isRequired && <Text style={{ color: "red" }}>*</Text>}
+        {isRequired && <Text style={{ color: palette.error500 }}>*</Text>}
       </Text>
       <FlatList
         data={options}
