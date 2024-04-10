@@ -64,7 +64,18 @@ const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
         </Text>
       )}
       <BaseTouchable onPress={() => inputTimeRef?.current?.focus()}>
-        <Box>
+        <Box
+          width="100%"
+          p="m"
+          pr="s"
+          borderWidth={0.2}
+          flexDirection="row"
+          alignItems="center"
+          borderColor="inputBorder"
+          justifyContent="space-between"
+          bg="input"
+          borderRadius="s"
+        >
           <MaskInput
             value={selectedTimeText}
             style={styleField}

@@ -70,7 +70,18 @@ const InputDate: React.FC<PropDate & { styleField?: ViewStyle }> = ({
         style={{ ...containerStyle }}
         onPress={() => inputDateRef?.current?.focus()}
       >
-        <Box>
+        <Box
+          width="100%"
+          p="m"
+          pr="s"
+          borderWidth={0.2}
+          flexDirection="row"
+          alignItems="center"
+          borderColor="inputBorder"
+          justifyContent="space-between"
+          bg="input"
+          borderRadius="s"
+        >
           <MaskInput
             value={selectedDateText}
             style={styleField}

@@ -1,10 +1,10 @@
 import React from "react";
 import { FieldConfig, useField } from "formik";
 import ErrorMessage from "@components/Forms/ErrorMessage";
-import { formatDate } from "@utils/format";
-import dayjs from "dayjs";
 import { PropDate } from "@components/DateTimeInput/types";
 import { DateTimeInput } from "@components/DateTimeInput";
+import { formatDate } from "@utils/format";
+import moment from "moment";
 
 export type Props = PropDate &
   Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
@@ -35,12 +35,12 @@ const FieldInputDate: React.FC<Props> = ({
       }
 
       if (typeFormat === "time") {
-        const timeDefaultValue = formatDate(defaultValue, "HH:mm:ss");
+        const timeDefaultValue = formatDate(defaultValue, true);
         return setDefaultValueDateOrTime(timeDefaultValue);
       }
     }
 
-    const dateTimeCurrent = dayjs().format("DD/MM/YYYY HH:mm:ss");
+    const dateTimeCurrent = moment().format("DD/MM/YYYY HH:mm:ss");
     const getTimeOrDate = dateTimeCurrent.split(" ");
 
     if (typeFormat === "date") {
