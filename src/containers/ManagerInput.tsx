@@ -27,6 +27,7 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
         if (itemField.type === "multiple_choice") {
           return (
             <FieldCheckbox
+              key={`${index}field-signature-${itemField.name}`}
               name={itemField.name}
               options={itemField.options}
               title={itemField.label}
@@ -37,6 +38,7 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
         if (itemField.type === "single_choice") {
           return (
             <FieldRadioBottom
+              key={`${index}field-signature-${itemField.name}`}
               name={itemField.name}
               radioButtons={itemField.options}
               title={itemField.label}
@@ -47,6 +49,7 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
         if (itemField.type === "file") {
           return (
             <FieldFile
+              key={`${index}field-signature-${itemField.name}`}
               label={itemField.label}
               name={itemField.name}
               required={itemField.required ?? false}
