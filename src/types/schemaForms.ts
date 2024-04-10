@@ -61,8 +61,6 @@ export type OptionMultipleChoiceType = {
 type MultipleChoiceType = FieldCommonType & {
   type: "multiple_choice";
   options: OptionMultipleChoiceType[];
-  value: string[];
-  initialValue: string[];
 };
 
 type SingleChoiceType = FieldCommonType & {
