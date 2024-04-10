@@ -4,6 +4,7 @@ import { Button, Text } from "@ui/components";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import {
+  FieldFile,
   FieldInput,
   FieldInputAnswer,
   FieldsSignature,
@@ -21,6 +22,16 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
+        if (itemField.type === "file") {
+          return (
+            <FieldFile
+              label={itemField.label}
+              name={itemField.name}
+              required={itemField.required ?? false}
+            />
+          );
+        }
+
         if (itemField.type === "signature") {
           return (
             <FieldsSignature

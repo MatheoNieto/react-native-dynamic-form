@@ -76,6 +76,11 @@ type InputTextAnswerType = FieldCommonType & {
   requires?: RequiresTextAnswersType;
 };
 
+type FileInputType = FieldCommonType & {
+  type: "file";
+  initialValue: string[];
+};
+
 export type SchemaFormType = {
   form: FORM_TYPE_SCHEMA_PROPS;
   typesFields: string[];
@@ -88,7 +93,8 @@ export type FieldType =
   | InputTextNumberType
   | TitleType
   | SignatureFieldType
-  | InputTextAnswerType;
+  | InputTextAnswerType
+  | FileInputType;
 
 type ObjectShapeValues =
   ObjectShape extends Record<string, infer V> ? V : never;
