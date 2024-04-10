@@ -29,3 +29,12 @@ export const mapperDataFiles = (
     fileName: getNameImagePicker(asset.uri),
   }));
 };
+
+export const formatImages = ["gif", "png", "bmp", "jpeg", "jpg"];
+export const formatPdf = ["pdf"];
+
+export const get_url_extension = (url: string) => {
+  if (!url) return "";
+
+  return url.split(/[#?]/)[0].split(".").pop()?.trim();
+};
