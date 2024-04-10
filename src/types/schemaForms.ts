@@ -18,6 +18,7 @@ export type TypeFields =
   | "location"
   | "date"
   | "date_time"
+  | "time"
   | "select";
 
 type FieldCommonType = {
@@ -100,10 +101,7 @@ export type SchemaFormType = {
 };
 
 type FieldInputDate = FieldCommonType & {
-  type: "date";
-};
-type FieldInputDateTime = FieldCommonType & {
-  type: "date_time";
+  type: "date" | "date_time" | "time";
 };
 
 export type FieldType =
@@ -114,7 +112,6 @@ export type FieldType =
   | SignatureFieldType
   | InputTextAnswerType
   | FileInputType
-  | FieldInputDateTime
   | FieldInputDate;
 
 type ObjectShapeValues =

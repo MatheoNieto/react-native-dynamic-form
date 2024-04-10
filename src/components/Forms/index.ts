@@ -5,3 +5,4 @@ export { default as FieldInputAnswer } from "./FieldInputAnswer";
 export { default as FieldFile } from "./FieldFile";
 export { default as FieldCheckbox } from "./FieldCheckbox";
 export { default as FieldRadioBottom } from "./FieldRadioBottom";
+export { default as FieldInputDate } from "./FieldInputDate";

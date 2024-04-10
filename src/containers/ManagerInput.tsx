@@ -8,6 +8,7 @@ import {
   FieldFile,
   FieldInput,
   FieldInputAnswer,
+  FieldInputDate,
   FieldRadioBottom,
   FieldsSignature,
 } from "@components/Forms";
@@ -24,6 +25,21 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
+        if (
+          itemField.type === "date" ||
+          itemField.type === "date_time" ||
+          itemField.type === "time"
+        ) {
+          return (
+            <FieldInputDate
+              name={itemField.name}
+              label={itemField.label}
+              isRequired={itemField.required}
+              typeFormat={itemField.type}
+            />
+          );
+        }
+
         if (itemField.type === "multiple_choice") {
           return (
             <FieldCheckbox
