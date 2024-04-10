@@ -80,7 +80,7 @@ type FileInputType = FieldCommonType & {
   type: "file";
   multiple?: boolean;
   typeFiles?: "images" | "pdf" | "all";
-  initialValue: string[];
+  initialValue?: string[];
 };
 
 export type SchemaFormType = {
