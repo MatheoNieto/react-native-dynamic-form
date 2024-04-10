@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 // @ts-ignore
 import { ObjectShape } from "yup/lib/object";
+import { FileUploaded } from "@components/InputFileUploadAutomatic/types";
 
 export type TypeFields =
   | "title"
@@ -80,7 +81,9 @@ type FileInputType = FieldCommonType & {
   type: "file";
   multiple?: boolean;
   typeFiles?: "images" | "pdf" | "all";
-  initialValue?: string[];
+  initialValue?: FileUploaded[];
+  onUploadFiles?: (files: FormData) => {};
+  value?: FileUploaded[];
 };
 
 export type SchemaFormType = {
