@@ -62,6 +62,7 @@
   "dependencies": {
     "@shopify/restyle": "^2.4.2",
     "color": "^4.2.3",
+    "dayjs": "^1.11.10",
     "expo-document-picker": "^11.10.1",
     "expo-file-system": "^16.0.8",
     "expo-image-picker": "^14.7.1",
@@ -73,6 +74,8 @@
     "react-native-animatable": "^1.4.0",
     "react-native-check-box": "^2.1.7",
     "react-native-image-viewing": "^0.2.2",
+    "react-native-mask-input": "^1.2.3",
+    "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-radio-buttons-group": "^3.1.0",
     "react-native-render-html": "^6.3.4",
     "react-native-sheet": "^0.1.6",

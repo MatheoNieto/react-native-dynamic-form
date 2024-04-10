@@ -99,6 +99,13 @@ export type SchemaFormType = {
   propsFields: FieldType[];
 };
 
+type FieldInputDate = FieldCommonType & {
+  type: "date";
+};
+type FieldInputDateTime = FieldCommonType & {
+  type: "date_time";
+};
+
 export type FieldType =
   | MultipleChoiceType
   | SingleChoiceType
@@ -106,7 +113,9 @@ export type FieldType =
   | TitleType
   | SignatureFieldType
   | InputTextAnswerType
-  | FileInputType;
+  | FileInputType
+  | FieldInputDateTime
+  | FieldInputDate;
 
 type ObjectShapeValues =
   ObjectShape extends Record<string, infer V> ? V : never;
