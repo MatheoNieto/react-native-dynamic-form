@@ -10,6 +10,6 @@ export default defineConfig({
   clean: true,
   minify: true,
   loader: {
-    ".png": "base64",
+    ".png": "file",
   },
 });

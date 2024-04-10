@@ -27,19 +27,11 @@ const buttonVariants = {
     backgroundColor: "white",
     color: "primaryBlue",
   },
-  outlineWhite: {
+  outline: {
     backgroundColor: "input",
     color: "black",
     borderWidth: 1,
     borderColor: "buttonBorder",
-  },
-  outline: {
-    backgroundColor: "lightBlue",
-    color: "primaryBlue",
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: "unset",
-    fontWeight: "bold",
   },
 };
 
