@@ -2,6 +2,8 @@ import * as Yup from "yup";
 // @ts-ignore
 import { ObjectShape } from "yup/lib/object";
 import { FileUploaded } from "@components/InputFileUploadAutomatic/types";
+import { TextStyle, ViewStyle } from "react-native";
+import { RadioButtonProps } from "react-native-radio-buttons-group/lib/types";
 
 export type TypeFields =
   | "title"
@@ -48,17 +50,24 @@ export type SignatureFieldType = FieldCommonType & {
   initialValue?: SignatureValueType[];
   optionWhoSign?: string[];
 };
+export type OptionMultipleChoiceType = {
+  label: string;
+  styleLabel?: TextStyle;
+  style?: ViewStyle;
+  disabled?: boolean;
+  checked: boolean;
+};
 
 type MultipleChoiceType = FieldCommonType & {
   type: "multiple_choice";
-  options: string[];
+  options: OptionMultipleChoiceType[];
   value: string[];
   initialValue: string[];
 };
 
 type SingleChoiceType = FieldCommonType & {
   type: "single_choice";
-  options: string[];
+  options: RadioButtonProps[];
 };
 
 type InputTextNumberType = FieldCommonType & {

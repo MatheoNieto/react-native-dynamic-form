@@ -4,9 +4,11 @@ import { Button, Text } from "@ui/components";
 import { useFormikContext } from "formik";
 import * as Yup from "yup";
 import {
+  FieldCheckbox,
   FieldFile,
   FieldInput,
   FieldInputAnswer,
+  FieldRadioBottom,
   FieldsSignature,
 } from "@components/Forms";
 import RenderHtlm from "@components/RenderHtlm";
@@ -22,6 +24,26 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
+        if (itemField.type === "multiple_choice") {
+          return (
+            <FieldCheckbox
+              name={itemField.name}
+              options={itemField.options}
+              title={itemField.label}
+            />
+          );
+        }
+
+        if (itemField.type === "single_choice") {
+          return (
+            <FieldRadioBottom
+              name={itemField.name}
+              radioButtons={itemField.options}
+              title={itemField.label}
+            />
+          );
+        }
+
         if (itemField.type === "file") {
           return (
             <FieldFile
