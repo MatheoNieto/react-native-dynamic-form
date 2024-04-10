@@ -63,11 +63,7 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
               onPress={() => onOpenCloseSign?.(true)}
               style={styles.contentSign}
             >
-              <Image
-                resizeMode="contain"
-                source={images.editIcon}
-                style={{ height: 150, width: 150 }}
-              />
+              <></>
             </TouchableOpacity>
           ) : (
             <>
