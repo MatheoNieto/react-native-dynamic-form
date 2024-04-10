@@ -8,6 +8,7 @@ import { PropDate } from "@components/DateTimeInput/types";
 import { BaseTouchable, Box, Text } from "@ui/components";
 import { MaskInput } from "@components/MaskInput";
 import moment from "moment";
+import { palette } from "@theme";
 
 const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   label,
@@ -87,7 +88,11 @@ const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
           />
           {icon && (
             <BaseTouchable onPress={() => showOrHidePicker(true)}>
-              <Ionicons name="time-sharp" size={24} />
+              <Ionicons
+                name="time-sharp"
+                size={24}
+                color={palette.primaryBlue}
+              />
             </BaseTouchable>
           )}
         </Box>
