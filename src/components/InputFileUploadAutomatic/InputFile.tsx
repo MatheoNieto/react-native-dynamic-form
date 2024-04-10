@@ -38,7 +38,7 @@ const InputFile: React.FC<InputFileProps> = ({
       <BaseTouchable
         p="m"
         borderWidth={1}
-        borderColor="primary"
+        borderColor="inputBorder"
         alignItems="center"
         justifyContent="center"
         borderRadius="s"
@@ -47,7 +47,7 @@ const InputFile: React.FC<InputFileProps> = ({
         <Ionicons
           name="md-cloud-upload-outline"
           size={24}
-          color={palette.primary100}
+          color={palette.base100}
         />
         <Text variant="bodyBold">
           {label ?? "Upload"}
