@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
-import {
-  Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  View,
-  ViewStyle,
-} from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import moment from "moment/moment";
-const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
+import { useCombinedRefs } from "@ui/hooks";
+import { formatDate } from "@utils/format";
+import { TextInput, ViewStyle } from "react-native";
+import { PropDate } from "@components/DateTimeInput/types";
+import { BaseTouchable, Box, Text } from "@ui/components";
+import MaskInput from "react-native-mask-input";
+
+const InputTime: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   label,
-  labelStyles,
   icon,
   onChange,
   containerStyle,
@@ -28,7 +27,7 @@ const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
   );
   const [selectedTimeText, setSelectedTimeText] = React.useState<string>("");
   const formatTime = "HH:mm";
-  const currentDate = moment().format("DD-MM-YYYY");
+  const currentDate = formatDate(new Date());
 
   useEffect(() => {
     setSelectedTimeText(defaultValue);
@@ -49,7 +48,7 @@ const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
     setIsTimePickerVisible(show);
   };
   const handleConfirm = (time: Date) => {
-    const dateText = moment(time).format(formatTime);
+    const dateText = formatDate(time, formatTime);
     setSelectedTimeText(dateText);
     showOrHidePicker(false);
   };
@@ -58,17 +57,17 @@ const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
   };
 
   return (
-    <View style={{ ...containerStyle }}>
+    <Box style={{ ...containerStyle }}>
       {label && (
-        <Text style={[styles.labelInput, labelStyles]}>
+        <Text>
           {label} {isRequired && <Text style={{ color: "red" }}>*</Text>}
         </Text>
       )}
-      <TouchableWithoutFeedback onPress={() => inputTimeRef?.current?.focus()}>
-        <View style={{ ...styles.contentInput }}>
+      <BaseTouchable onPress={() => inputTimeRef?.current?.focus()}>
+        <Box>
           <MaskInput
             value={selectedTimeText}
-            style={[styles.input, styleField]}
+            style={styleField}
             ref={refs}
             onChangeText={(text) => handleChange(text)}
             keyboardType="numeric"
@@ -76,17 +75,12 @@ const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
             mask={[/\d/, /\d/, ":", /\d/, /\d/]}
           />
           {icon && (
-            <TouchableWithoutFeedback onPress={() => showOrHidePicker(true)}>
-              <Ionicons
-                name="time-sharp"
-                size={24}
-                color={theme.color.blue}
-                style={styles.icon}
-              />
-            </TouchableWithoutFeedback>
+            <BaseTouchable onPress={() => showOrHidePicker(true)}>
+              <Ionicons name="time-sharp" size={24} />
+            </BaseTouchable>
           )}
-        </View>
-      </TouchableWithoutFeedback>
+        </Box>
+      </BaseTouchable>
 
       <DateTimePicker
         date={new Date(`${currentDate} ${selectedTime}`)}
@@ -95,7 +89,7 @@ const InputTime: React.FC<PropInputDate & { styleField?: ViewStyle }> = ({
         onConfirm={handleConfirm}
         onCancel={() => showOrHidePicker(false)}
       />
-    </View>
+    </Box>
   );
 };
 

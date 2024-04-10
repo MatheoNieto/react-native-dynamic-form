@@ -63,6 +63,7 @@
     "@shopify/restyle": "^2.4.2",
     "color": "^4.2.3",
     "dayjs": "^1.11.10",
+    "dayjs-plugin-utc": "^0.1.2",
     "expo-document-picker": "^11.10.1",
     "expo-file-system": "^16.0.8",
     "expo-image-picker": "^14.7.1",
