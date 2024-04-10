@@ -20,6 +20,9 @@ const buttonVariants = {
     textDecorationLine: "underline",
     color: "primaryBlue",
   },
+  text: {
+    color: "primaryBlue",
+  },
   solidWhite: {
     backgroundColor: "white",
     color: "primaryBlue",

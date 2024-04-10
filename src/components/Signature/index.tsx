@@ -59,10 +59,10 @@ const FieldSignature: React.FC<Props> = ({
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Button p="s" variant="link" onPress={handleUndo}>
+            <Button p="s" variant="text" onPress={handleUndo}>
               Clear
             </Button>
-            <Button p="s" variant="outline" onPress={handleConfirm}>
+            <Button p="s" width={100} onPress={handleConfirm}>
               Confirm
             </Button>
           </View>

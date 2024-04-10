@@ -21,7 +21,7 @@ const FieldsSignature: React.FC<Props> = ({
   name,
   validate,
   value,
-  required,
+  required = false,
   multiple,
   optionWhoSign,
   disabledInput,
@@ -76,7 +76,7 @@ const FieldsSignature: React.FC<Props> = ({
           ))}
           {multiple && (
             <Button
-              variant="link"
+              variant="text"
               mb="m"
               onPress={() =>
                 arrayHelpers.push({

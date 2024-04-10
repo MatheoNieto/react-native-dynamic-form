@@ -52,6 +52,7 @@
     "@types/lodash": "^4.17.0",
     "@types/react": "^18.2.74",
     "@types/react-native": "^0.73.0",
+    "copyfiles": "^2.4.1",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "typescript": "^5.4.4"
@@ -70,7 +71,8 @@
   },
   "scripts": {
     "clean": "npx rimraf **/dist",
-    "build": "tsup",
+    "build": "tsup && npm run copy-assets",
+    "copy-assets": "copyfiles -u 1 \"assets/**/*\" dist",
     "postinstall": "patch-package"
   }
 }

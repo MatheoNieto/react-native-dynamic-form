@@ -111,7 +111,7 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                       icon={
                         <Ionicons
                           name="close-circle-outline"
-                          size={25}
+                          size={35}
                           color="black"
                         />
                       }

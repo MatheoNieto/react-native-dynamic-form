@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "sourceMap": true,
     "esModuleInterop": true,
+    "moduleDetection": "auto",
     "moduleResolution": "node",
     "jsx": "react",
     "allowJs": true,
@@ -26,7 +28,9 @@
       "@types": ["src/types/index"],
       "@utils": ["src/utils/index"],
       "@utils/*": ["src/utils/*"],
-    }
+    },
+    "assets": ["src/assets/**/*"]
   },
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
