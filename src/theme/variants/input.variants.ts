@@ -16,6 +16,7 @@ const inputVariants = {
     borderBottomColor: "inputBorder",
   },
   focusedUnderline: {
+    borderWidth: 0,
     borderBottomWidth: 1,
     borderBottomColor: "inputBorderFocused",
     fontWeight: "700",

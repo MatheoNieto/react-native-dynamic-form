@@ -25,7 +25,6 @@ type FieldCommonType = {
   label: string;
   name: string;
   onChange?: (newValue: string) => void;
-  value?: string;
   initialValue?: string;
   required?: boolean;
 };
