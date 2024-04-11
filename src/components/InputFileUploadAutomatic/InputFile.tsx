@@ -49,9 +49,9 @@ const InputFile: React.FC<InputFileProps> = ({
           size={24}
           color={palette.base100}
         />
-        <Text variant="bodyBold">
+        <Text variant="label">
           {label ?? "Upload"}
-          {isRequired && <Text style={{ color: "red" }}>*</Text>}
+          {isRequired && <Text style={{ color: palette.error500 }}>*</Text>}
         </Text>
       </BaseTouchable>
       <ModalOptionsUploadFile

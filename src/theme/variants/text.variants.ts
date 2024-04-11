@@ -61,6 +61,12 @@ const textVariants = {
     fontSize: 14,
     lineHeight: 18,
   },
+  label: {
+    color: "primaryBlue",
+    fontSize: 14,
+    fontWeight: "700",
+    textTransform: "capitalize",
+  },
   bodyRegularLabel: {
     fontWeight: "normal",
     fontSize: 10,

@@ -83,7 +83,7 @@ const CheckboxComponent: React.FC<PropsCheckbox> = ({
 
   return (
     <Box>
-      <Text>
+      <Text variant="label">
         {title}
         {isRequired && <Text style={{ color: palette.error500 }}>*</Text>}
       </Text>

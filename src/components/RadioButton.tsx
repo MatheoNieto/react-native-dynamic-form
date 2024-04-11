@@ -33,20 +33,14 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <>
-      <Text
-        style={{
-          marginVertical: 20,
-          fontSize: 14,
-          color: palette.black,
-          textTransform: "capitalize",
-        }}
-      >
-        {title} {isRequired && <Text style={{ color: "red" }}>*</Text>}
+      <Text variant="label">
+        {title}{" "}
+        {isRequired && <Text style={{ color: palette.error500 }}>*</Text>}
       </Text>
       <RadioGroup
         radioButtons={radioButtons.map((radio) => ({
           ...radio,
-          color: palette.primary100,
+          color: palette.primaryBlue,
           size: 17,
           labelStyle: { marginHorizontal: 15 },
         }))}

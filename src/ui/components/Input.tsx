@@ -146,7 +146,13 @@ const Input = forwardRef<InputProps, typeof TextInput>(
     ).current;
     let _inputVariant = inputVariant;
     if (isFocused) {
-      _inputVariant = _inputVariant !== "textArea" ? "focused" : "focusedArea";
+      const isUnderline = _inputVariant === "underLine";
+      const isTextArea = _inputVariant === "textArea";
+      _inputVariant = isUnderline
+        ? "focusedUnderline"
+        : isTextArea
+          ? "focusedArea"
+          : "focused";
     }
     if (isDisabled) {
       _inputVariant = "disabled";
@@ -227,6 +233,7 @@ const Input = forwardRef<InputProps, typeof TextInput>(
         <Box flexDirection="row" alignItems="center">
           <Box flex={1}>
             <Text
+              variant="label"
               as={Animated.Text}
               position="absolute"
               color="grey400"
@@ -275,7 +282,7 @@ const Input = forwardRef<InputProps, typeof TextInput>(
             <Box top={value || isFocused ? 3 : 8} right={5}>
               <Text
                 mt={label ? "s" : "unset"}
-                variant="bodyRegular"
+                variant="label"
                 color="lightGray"
               >
                 {suffix}

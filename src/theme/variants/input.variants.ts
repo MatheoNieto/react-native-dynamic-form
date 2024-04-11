@@ -11,9 +11,13 @@ const inputVariants = {
     borderColor: "inputBorder",
   },
   underLine: {
-    backgroundColor: "transparent",
     borderWidth: 0,
     borderBottomWidth: 1,
+  },
+  focusedUnderline: {
+    borderBottomWidth: 1,
+    height: 120,
+    fontWeight: "700",
   },
   error: {
     borderColor: "errorAlert",

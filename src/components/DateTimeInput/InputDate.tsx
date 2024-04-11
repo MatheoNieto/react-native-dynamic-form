@@ -62,7 +62,7 @@ const InputDate: React.FC<PropDate & { styleField?: ViewStyle }> = ({
   return (
     <Box style={{ ...containerStyle }}>
       {label && (
-        <Text style={labelStyles}>
+        <Text variant="label" style={labelStyles}>
           {label} {isRequired && <Text style={{ color: "red" }}>*</Text>}
         </Text>
       )}

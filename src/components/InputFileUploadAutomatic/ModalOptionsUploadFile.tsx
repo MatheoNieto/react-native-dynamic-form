@@ -8,7 +8,7 @@ import {
   MediaTypes,
 } from "@components/InputFileUploadAutomatic/types";
 import { mapperDataFiles } from "@components/InputFileUploadAutomatic/utils";
-import { Box, Button } from "@ui/components";
+import { Button, Card } from "@ui/components";
 
 type Props = {
   files: FileSelectedType[];
@@ -117,7 +117,7 @@ const ModalOptionsUploadFile: React.FC<Props> = ({
   if (!openModal) return null;
 
   return (
-    <Box style={styles.modalMenu}>
+    <Card mx="m" style={styles.modalMenu}>
       {typeFiles !== "pdf" && (
         <>
           <Button variant="text" onPress={() => pickImage()}>
@@ -137,7 +137,7 @@ const ModalOptionsUploadFile: React.FC<Props> = ({
       >
         Choose Files
       </Button>
-    </Box>
+    </Card>
   );
 };
 

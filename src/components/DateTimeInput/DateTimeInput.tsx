@@ -3,6 +3,7 @@ import InputTime from "@components/DateTimeInput/InputTime";
 import InputDate from "@components/DateTimeInput/InputDate";
 import { PropDate } from "@components/DateTimeInput/types";
 import { Box, Text } from "@ui/components";
+import { palette } from "@theme";
 
 const DateTimeInput: React.FC<
   PropDate & { typeFormat: "date" | "time" | "date_time" }
@@ -60,8 +61,9 @@ const DateTimeInput: React.FC<
   }
   return (
     <Box style={{ marginVertical: 10 }}>
-      <Text style={labelStyles}>
-        {label} {isRequired && <Text style={{ color: "red" }}>*</Text>}
+      <Text variant="label" style={labelStyles}>
+        {label}{" "}
+        {isRequired && <Text style={{ color: palette.error500 }}>*</Text>}
       </Text>
       <Box style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <InputDate defaultValue={date} onChange={setDate} {...rest} />
