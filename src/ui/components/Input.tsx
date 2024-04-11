@@ -146,8 +146,9 @@ const Input = forwardRef<InputProps, typeof TextInput>(
     ).current;
     let _inputVariant = inputVariant;
     if (isFocused) {
-      const isUnderline = _inputVariant === "underLine";
-      const isTextArea = _inputVariant === "textArea";
+      const isUnderline = inputVariant === "underLine";
+      const isTextArea = inputVariant === "textArea";
+
       _inputVariant = isUnderline
         ? "focusedUnderline"
         : isTextArea
