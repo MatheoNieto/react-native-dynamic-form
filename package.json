@@ -42,14 +42,19 @@
   "license": "MIT",
   "private": false,
   "peerDependencies": {
+    "@expo/vector-icons": ">=13.0.0",
+    "expo": ">=49",
     "react": ">=18.2.0",
     "react-native": ">=0.72.10"
   },
   "devDependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@types/color": "^3.0.6",
     "@types/lodash": "^4.17.0",
     "@types/react": "^18.2.74",
     "@types/react-native": "^0.73.0",
+    "@types/react-native-check-box": "^2.1.6",
+    "copyfiles": "^2.4.1",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "typescript": "^5.4.4"
@@ -57,16 +62,30 @@
   "dependencies": {
     "@shopify/restyle": "^2.4.2",
     "color": "^4.2.3",
+    "expo-document-picker": "^11.10.1",
+    "expo-file-system": "^16.0.8",
+    "expo-image-picker": "^14.7.1",
+    "expo-sharing": "^11.10.0",
     "formik": "^2.4.5",
     "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "moti": "^0.28.1",
+    "patch-package": "^8.0.0",
     "react-native-animatable": "^1.4.0",
-    "react-native-fs": "^2.20.0",
-    "react-native-mmkv-storage": "^0.9.1",
+    "react-native-check-box": "^2.1.7",
+    "react-native-image-viewing": "^0.2.2",
+    "react-native-mask-input": "^1.2.3",
+    "react-native-modal-datetime-picker": "^17.1.0",
+    "react-native-radio-buttons-group": "^3.1.0",
+    "react-native-render-html": "^6.3.4",
+    "react-native-sheet": "^0.1.6",
     "react-native-signature-canvas": "^4.7.2",
     "yup": "^1.4.0"
   },
   "scripts": {
     "clean": "npx rimraf **/dist",
-    "build": "tsup"
+    "build": "tsup && npm run copy-assets",
+    "copy-assets": "copyfiles -u 1 \"assets/**/*\" dist",
+    "postinstall": "patch-package"
   }
 }

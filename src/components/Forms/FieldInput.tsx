@@ -67,7 +67,7 @@ const FieldInput = forwardRef<typeof Input, Props>(
     }, []);
 
     return (
-      <Box style={[containerStyle]}>
+      <Box my="s" style={[containerStyle]}>
         <Input
           style={styleInput}
           ref={ref}

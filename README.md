@@ -5,6 +5,8 @@
 
 This package help you creating dynamic forms
 
+## Preview 
+![Animation](docs/image.gif)
 
 ## Types fields
 

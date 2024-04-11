@@ -17,7 +17,7 @@ import {
   TextProps as ShopifyRestyleTextProps,
   textRestyleFunctions,
 } from "@shopify/restyle";
-import { CustomFonts, useAppRestyle } from "@theme";
+import { useAppRestyle } from "@theme";
 
 import { useAsProp, useFontStyle } from "@ui/hooks";
 import { forwardRef } from "@ui/utils";
@@ -29,7 +29,6 @@ type RestyleTextProps = PositionProps<Theme> &
   LayoutProps<Theme> &
   Omit<ShopifyRestyleTextProps<Theme>, "fontFamily" | "fontWeight"> &
   Omit<RNTextProps, "style"> & {
-    fontFamily?: CustomFonts;
     fontWeight?: FontWeight;
     isDisabled?: boolean;
     email?: string;

@@ -22,7 +22,7 @@ const Forms: React.FC<Props> = ({ schemaFields, ...rest }) => {
 
   return (
     <ScrollBox>
-      <Box>
+      <Box px="m">
         <FormSchema {...rest} dataFields={dataFields} />
       </Box>
     </ScrollBox>
