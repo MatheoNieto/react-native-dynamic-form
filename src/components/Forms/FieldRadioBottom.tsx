@@ -2,6 +2,7 @@ import React from "react";
 import { FieldConfig, useField } from "formik";
 import ErrorMessage from "@components/Forms/ErrorMessage";
 import RadioButton, { RadioButtonProps } from "@components/RadioButton";
+import { Box } from "@ui/components";
 
 export type Props = RadioButtonProps &
   Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
@@ -30,7 +31,7 @@ const FieldRadioBottom: React.FC<Props> = ({
   }, []);
 
   return (
-    <>
+    <Box my="s">
       <RadioButton
         title={title}
         selectedId={defaultValue}
@@ -39,7 +40,7 @@ const FieldRadioBottom: React.FC<Props> = ({
         {...rest}
       />
       {isInvalid && <ErrorMessage>{meta.error}</ErrorMessage>}
-    </>
+    </Box>
   );
 };
 

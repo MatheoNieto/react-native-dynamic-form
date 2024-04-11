@@ -2,6 +2,7 @@ import React from "react";
 import { FieldConfig, useField } from "formik";
 import ErrorMessage from "@components/Forms/ErrorMessage";
 import Checkbox, { PropsCheckbox } from "@components/Checkbox";
+import { Box } from "@ui/components";
 
 export type Props = PropsCheckbox &
   Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
@@ -28,7 +29,7 @@ const FieldCheckbox: React.FC<Props> = ({
   }, []);
 
   return (
-    <>
+    <Box my="s">
       <Checkbox
         title={title}
         onChange={handleChange}
@@ -37,7 +38,7 @@ const FieldCheckbox: React.FC<Props> = ({
         defaultValue={defaultValue}
       />
       {isInvalid && <ErrorMessage>{meta.error}</ErrorMessage>}
-    </>
+    </Box>
   );
 };
 

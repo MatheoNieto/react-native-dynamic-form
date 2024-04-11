@@ -3,6 +3,7 @@ import { FieldConfig, useField } from "formik";
 import { InputFileProps } from "@components/InputFileUploadAutomatic/types";
 import { Box, Text } from "@ui/components";
 import InputFileUploadAutomatic from "@components/InputFileUploadAutomatic/InputFileUploadAutomatic";
+import { palette } from "@theme";
 
 type Props = InputFileProps &
   Pick<FieldConfig<any>, "name" | "validate" | "value"> & {
@@ -27,11 +28,11 @@ const FieldFile: React.FC<Props> = ({
   };
 
   return (
-    <Box my="m">
+    <Box my="s">
       {label && (
-        <Text>
+        <Text variant="label">
           {label}
-          {required && <Text style={{ color: "red" }}>*</Text>}
+          {required && <Text style={{ color: palette.error500 }}>*</Text>}
         </Text>
       )}
       <Box my="s">
