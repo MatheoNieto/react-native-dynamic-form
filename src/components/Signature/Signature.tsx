@@ -3,17 +3,9 @@ import Signature, {
   SignatureViewProps,
   SignatureViewRef,
 } from "react-native-signature-canvas";
-import {
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Button, IconButton } from "@ui/components";
+import { Image, Modal, StyleSheet } from "react-native";
+import { BaseTouchable, Box, Button, IconButton, Text } from "@ui/components";
 import { Ionicons } from "@expo/vector-icons";
-import { images } from "@assets/images";
 
 type Props = SignatureViewProps & {
   showPreview?: boolean;
@@ -42,29 +34,28 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
     const renderPreviewOrButton = () => {
       if (!showPreview) {
         return (
-          <View style={{ marginTop: -30 }}>
-            <Text numberOfLines={1}>
+          <Box style={{ marginTop: -30 }}>
+            <Text variant="label" numberOfLines={1}>
               {label}
-              {isRequired && <Text style={{ color: "red" }}>*</Text>}
+              {isRequired && <Text color="error500">*</Text>}
             </Text>
 
             <Button variant="link" onPress={() => onOpenCloseSign?.(true)}>
               {!signatureData ? "Signature" : "Update Signature"}
             </Button>
-          </View>
+          </Box>
         );
       }
 
       return (
         <>
           {!signatureData ? (
-            <TouchableOpacity
-              activeOpacity={1}
+            <BaseTouchable
               onPress={() => onOpenCloseSign?.(true)}
               style={styles.contentSign}
             >
               <></>
-            </TouchableOpacity>
+            </BaseTouchable>
           ) : (
             <>
               <Image
@@ -72,11 +63,11 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                 source={{ uri: signatureData }}
                 style={{ height: 150, backgroundColor: "white" }}
               />
-              <View style={{ alignItems: "flex-end" }}>
+              <Box style={{ alignItems: "flex-end" }}>
                 <Button mt="xxs" onPress={() => onOpenCloseSign(true)}>
                   Resign
                 </Button>
-              </View>
+              </Box>
             </>
           )}
         </>
@@ -88,8 +79,8 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
         {renderPreviewOrButton()}
         {showModalSign && (
           <Modal>
-            <View style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
-              <View
+            <Box style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
+              <Box
                 style={{
                   top: "25%",
                   flex: 0.5,
@@ -99,7 +90,7 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                 }}
               >
                 {!isRequired && (
-                  <View
+                  <Box
                     style={{ flexDirection: "row", justifyContent: "flex-end" }}
                   >
                     <IconButton
@@ -112,7 +103,7 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                         />
                       }
                     />
-                  </View>
+                  </Box>
                 )}
                 <Signature
                   ref={ref}
@@ -124,8 +115,8 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                   }}
                 />
                 {ButtonsFooter}
-              </View>
-            </View>
+              </Box>
+            </Box>
           </Modal>
         )}
       </>

@@ -21,7 +21,12 @@ type Props = {
 
 const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   type SchemaFormType = Yup.InferType<typeof dataFields.form.schema>;
-  const { isValid, handleSubmit } = useFormikContext<SchemaFormType>();
+  const { isValid, handleSubmit, values, errors } =
+    useFormikContext<SchemaFormType>();
+
+  console.log("=>{values}::", values);
+  console.log("<==>{errors}::", errors);
+
   return (
     <>
       {dataFields.propsFields.map((itemField, index) => {
