@@ -73,7 +73,7 @@ const SignatureComponent = React.forwardRef<SignatureViewRef, Props>(
                 style={{ height: 150, backgroundColor: "white" }}
               />
               <View style={{ alignItems: "flex-end" }}>
-                <Button variant="outline" onPress={() => onOpenCloseSign(true)}>
+                <Button mt="xxs" onPress={() => onOpenCloseSign(true)}>
                   Resign
                 </Button>
               </View>
