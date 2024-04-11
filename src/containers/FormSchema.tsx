@@ -1,9 +1,8 @@
 import React from "react";
-import { CommonProps, SchemaFormType } from "@types";
+import { CommonProps, SchemaFormType, YupSchema } from "@types";
 import { Box } from "@ui/components";
 import ManagerInput from "@containers/ManagerInput";
 import { Formik, FormikProps } from "formik";
-import * as Yup from "yup";
 import BaseSpinner from "@ui/components/BaseSpinner";
 
 const FormSchema: React.FC<CommonProps & { dataFields: SchemaFormType }> = ({
@@ -11,11 +10,10 @@ const FormSchema: React.FC<CommonProps & { dataFields: SchemaFormType }> = ({
   onSubmit,
   labelButtonSubmit,
 }) => {
-  type SCHEMA_FORM = Yup.InferType<typeof dataFields.form.schema>;
-  const formikRef = React.createRef<FormikProps<SCHEMA_FORM>>();
+  const formikRef = React.createRef<FormikProps<YupSchema>>();
 
   const [validationSchema, setValidationSchema] = React.useState<
-    SCHEMA_FORM | undefined
+    YupSchema | undefined
   >(undefined);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -33,8 +31,7 @@ const FormSchema: React.FC<CommonProps & { dataFields: SchemaFormType }> = ({
     };
   }, [dataFields.form.schema]);
 
-  const handleSubmit = React.useCallback((values: SCHEMA_FORM) => {
-    console.log("mapDataPetition::", JSON.stringify(values));
+  const handleSubmit = React.useCallback((values: any) => {
     onSubmit(values);
   }, []);
 

@@ -1,7 +1,16 @@
 import * as Yup from "yup";
-import { CREATE_SCHEMA_FORMS, FieldType, FORM_TYPE_SCHEMA_PROPS } from "@types";
+import {
+  CREATE_SCHEMA_FORMS,
+  FieldType,
+  FORM_TYPE_SCHEMA_PROPS,
+  YupSchema,
+} from "@types";
+import { validateStringArray } from "@utils/utils";
 
-type TempSchemaType = Yup.StringSchema | Yup.MixedSchema;
+type TempSchemaType =
+  | Yup.StringSchema
+  | Yup.MixedSchema
+  | Yup.ArraySchema<YupSchema>;
 type SchemaFieldTemporalType = {
   [key: string]: TempSchemaType;
 };
@@ -21,11 +30,24 @@ export const createSchemasForms = (
   const schemaFieldsTemporal: SchemaFieldTemporalType = {};
 
   fields.forEach((field, index) => {
+    let loadInitialValue = undefined;
     const isFieldChoose = field.type.includes("choice");
     let tempSchema: TempSchemaType = isFieldChoose ? Yup.mixed() : Yup.string();
 
     if (field.initialValue) {
-      dataFields.initialValues[field.name] = field.initialValue;
+      // const isTable = field.type === "table";
+
+      const isTable = false;
+      const isRadioButton = field.type === "single_choice";
+      const valueCurrentField = field.initialValue;
+      const isArrayString = validateStringArray(valueCurrentField);
+      const dataRadioButton =
+        isRadioButton && valueCurrentField
+          ? valueCurrentField[0]
+          : valueCurrentField;
+      const shouldBeArray = isArrayString ? dataRadioButton : valueCurrentField;
+
+      loadInitialValue = isTable ? [] : shouldBeArray;
     }
 
     if (isFieldChoose && field.type === "single_choice") {
@@ -38,8 +60,15 @@ export const createSchemasForms = (
       dataFields.initialErrors[field.name] = "This field is mandatory";
     }
 
-    dataFields.labels[field.name] = field.name;
-    schemaFieldsTemporal[field.name] = tempSchema;
+    if (field.type === "signature") {
+      const dataSchemaSignature = schemaSignature(field.required);
+      schemaFieldsTemporal[field.name] = dataSchemaSignature.schema;
+      dataFields.initialValues[field.name] = dataSchemaSignature.initialValue;
+    } else {
+      dataFields.initialValues[field.name] = field.initialValue;
+      dataFields.labels[field.name] = field.name;
+      schemaFieldsTemporal[field.name] = tempSchema;
+    }
   });
 
   return {
@@ -48,5 +77,22 @@ export const createSchemasForms = (
       schema: Yup.object().shape(schemaFieldsTemporal),
     },
     propsFields: fields,
+  };
+};
+
+export const schemaSignature = (isMandatory = false) => {
+  return {
+    schema: Yup.array().of(
+      Yup.object().shape({
+        whoSigned: Yup.string().nonNullable(),
+        base64_image: Yup.string().nonNullable(),
+      }),
+    ),
+    initialValue: [
+      {
+        whoSigned: isMandatory ? null : "",
+        base64_image: isMandatory ? null : "",
+      },
+    ],
   };
 };

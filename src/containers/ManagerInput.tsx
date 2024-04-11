@@ -24,7 +24,6 @@ const ManagerInput: React.FC<Props> = ({ dataFields, labelButtonSubmit }) => {
   const { isValid, handleSubmit, values, errors } =
     useFormikContext<SchemaFormType>();
 
-  console.log("=>{values}::", values);
   console.log("<==>{errors}::", errors);
 
   return (

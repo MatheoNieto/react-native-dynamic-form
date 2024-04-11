@@ -39,8 +39,8 @@ type TitleType = {
 };
 
 export type SignatureValueType = {
-  whoSigned: string;
-  base64_image: string;
+  whoSigned: string | null;
+  base64_image: string | null;
 };
 
 export type SignatureFieldType = FieldCommonType & {
@@ -119,7 +119,7 @@ type Shape<T extends Record<any, any>> = Partial<
   Record<keyof T, ObjectShapeValues>
 >;
 // @ts-ignore
-type YupSchema = Yup.ObjectSchema<
+export type YupSchema = Yup.ObjectSchema<
   Shape<{
     [key: string]: Yup.Schema<any>;
   }>
@@ -130,7 +130,7 @@ export type FORM_TYPE_SCHEMA_PROPS = {
     [key: string]: string;
   };
   initialValues: {
-    [key: string]: FieldType["initialValue"];
+    [key: string]: FieldType["initialValue"] | Array<SignatureValueType>;
   };
   labels: {
     [key: string]: string;
